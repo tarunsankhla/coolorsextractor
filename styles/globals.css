@@ -126,7 +126,7 @@ canvas {
 
 #pixelColor {
 	background-color: rgb(227, 227, 227);
-	border-radius: 15px 0 0 15px;
+	border-radius: 0 0 0 15px;
 }
 
 /* first element */
@@ -187,7 +187,7 @@ canvas {
 
 #pixelColor4 {
 	background-color: rgb(222, 222, 222);
-	border-radius: 0 15px 15px 0;
+	border-radius: 0 0 15px 0;
 }
 
 .text {

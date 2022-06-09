@@ -7,6 +7,7 @@ import { Input, Flex, Spacer, Grid, GridItem, Text, fontSize } from '@chakra-ui/
 
 export default function Home() {
   const [currenCanvas, setCurretCanvas] = useState(IMAGE4.src);
+  const [showCopied, setShowCopied] = useState(false);
   let canvas = null;
   let ctx = null;
   let data = [];
@@ -72,7 +73,9 @@ export default function Home() {
     // console.log(rgbToHex(rgbToHex));
     let pixelColor = document.getElementById(boxPixelColor);
     pixelColor.style.backgroundColor = clr;
-    pixelColor.innerText = c.red ? clr : "";
+    document.getElementById("text-" + boxPixelColor).innerText = c.red ? clr : "";
+    document.getElementById(boxPixelColor).innerText = c.red ? clr : "";
+    document.getElementById(boxPixelColor).style.color = c.red ? clr : "";
     document.getElementById(element).style.backgroundColor = clr;
     // console.log("color", clr)
     //save the string to use elsewhere
@@ -152,15 +155,12 @@ export default function Home() {
   }
 
   // function for mouse
-  function startMoving(evt, element, boxPixelColor) {
-
-    console.log("moving", evt);
+  function startMoving(evt, element, boxPixelColor)
+  {
     evt = evt || window.event;
     var posX = evt.clientX;
     var posY = evt.clientY;
     var a = document.getElementById(element);
-    // a.style.height = "50px";
-    // a.style.width = "50px";
     var divTop = a.style.top;
     var divLeft = a.style.left;
 
@@ -175,9 +175,6 @@ export default function Home() {
         aX = posX - diffX,
         aY = posY - diffY;
       var boun = document.getElementById("parent").offsetWidth - document.getElementById(element).offsetWidth;
-      // getPixel(evt);
-      // document.querySelector('img').addEventListener('mousemove', getPixel);
-
       console.log((aX > 0) && (aX < boun) && (aY > 0) && (aY < boun), aX, boun, (aY > 0), (aY < boun));
       if ((aX > 0) && (aX < boun) && (aY > 0) && (aY < boun)) move(element, aX, aY, boxPixelColor);
     }
@@ -196,10 +193,6 @@ export default function Home() {
     document.getElementById(divid).style.left = xpos + 'px';
     document.getElementById(divid).style.top = ypos + 'px';
     getPixel(undefined, xpos, ypos, divid, boxPixelColor);
-    // document.querySelector('canvas').addEventListener('mousemove', (e) => {
-    //   console.log(xpos, ypos, e.offsetX, e.offsetY);
-
-    // });
   }
 
   useEffect(() => {
@@ -236,6 +229,14 @@ export default function Home() {
 
     // }
   }
+
+  const urlClickHandler = (data) => {
+    navigator.clipboard.writeText(data);
+    setShowCopied(true);
+    setTimeout(() => {
+      setShowCopied(false);
+    }, 2000);
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -251,7 +252,7 @@ export default function Home() {
         </Text>
 
 
-        <Flex flexWrap="wrap" gap={6} width="100%" justifyContent="center" bg="blue.500" >
+        <Flex flexWrap="wrap" gap="20px" width="100%" justifyContent="center" bg="gray.100" p={5} >
 
           <Flex alignItems="center" flexWrap="wrap">
             <Flex direction="column" justifyContent="center" alignItems="start" gap="20px">
@@ -262,8 +263,12 @@ export default function Home() {
                 onChange={(event) => {
                   UploadCanvasFileHandler(event.target.files[0]);
                 }} />
+              
+              <Text fontSize='20px' as="b">
+                Copy the color by clicking on box!
+              </Text>
             </Flex>
-            <Flex justifyContent="center" alignItems="center" direction="column" bg="gray.100">
+            <Flex justifyContent="center" alignItems="center" direction="column" bg="gray.50" >
               <span className='canvas-container' id='parent'>
                 <canvas data-src={currenCanvas}></canvas>
                 <div className='all-element' id="elem" onMouseDown={(event) => startMoving(event, "elem", "pixelColor")}
@@ -277,12 +282,28 @@ export default function Home() {
                 <div className='all-element' id="elem4" onMouseDown={(event) => startMoving(event, "elem4", "pixelColor4")}
                   onMouseUp={() => stopMoving()}></div>
               </span>
-              <Flex >
-                <span className="box" id="pixelColor" data-label=""></span>
-                <span className="box" id="pixelColor1" data-label=""></span>
-                <span className="box" id="pixelColor2" data-label=""></span>
-                <span className="box" id="pixelColor3" data-label=""></span>
-                <span className="box" id="pixelColor4" data-label=""></span>
+              <Flex position="relative">
+                <Flex direction="column">
+                  <span className="box" id="pixelColor" data-label="" onClick={(e)=>urlClickHandler(e.target.outerText)}></span>
+                  <p id="text-pixelColor" className='text'></p>
+                </Flex>
+                <Flex direction="column">
+                  <span className="box" id="pixelColor1" data-label="" onClick={(e) => urlClickHandler(e.target.outerText)}></span>
+                <p id="text-pixelColor1" className='text'></p>
+                </Flex>
+                <Flex direction="column">
+                  <span className="box" id="pixelColor2" data-label="" onClick={(e) => urlClickHandler(e.target.outerText)}></span>
+                <p id="text-pixelColor2" className='text'></p>
+                </Flex>
+                <Flex direction="column">
+                  <span className="box" id="pixelColor3" data-label="" onClick={(e) => urlClickHandler(e.target.outerText)}></span>
+                <p id="text-pixelColor3" className='text'></p>
+                </Flex>
+                <Flex direction="column">
+                  <span className="box" id="pixelColor4" data-label="" onClick={(e) => urlClickHandler(e.target.outerText)}></span>
+                <p id="text-pixelColor4" className='text'></p>
+                </Flex>   
+                {showCopied && <p className="copied-clipboard">Copied!</p>}
               </Flex>
             </Flex>
 

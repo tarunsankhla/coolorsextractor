@@ -21,7 +21,9 @@ img{
 }
 
 canvas {
-  border: 1px solid ;
+  border: 1px solid white;
+  width: 100%;
+  height: 100%;
 }
 
 .flex-container{
@@ -37,6 +39,8 @@ canvas {
   /* background-color: attr('data-color'); */
   position: relative;
   /* margin: 5px; */
+  font-size: 10px;
+  cursor: pointer;
 }
 .box::before {
   color: #fff;
@@ -133,6 +137,7 @@ canvas {
 
 #pixelColor{
   background-color: rgb(227, 227, 227);
+  border-radius: 15px 0 0 15px;
 }
 /* first element */
 
@@ -199,4 +204,25 @@ canvas {
 
 #pixelColor4{
   background-color: rgb(222, 222, 222);
+  border-radius: 0 15px 15px 0;
 }
+
+
+.text{
+  font-size: 10px;
+}
+
+.copied-clipboard {
+  position: absolute;
+  /* bottom: -2.5rem; */
+  font-size: 0.9rem;
+  background-color: rgb(238, 238, 253);
+  border: 1px solid rgb(196, 196, 255);
+  padding: 8px;
+  border-radius: 5px;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+}
+
+

@@ -1,228 +1,207 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	padding: 0;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-img{
-  width: 200px;
-  height: 300px;
+img {
+	width: 200px;
+	height: 300px;
 }
 
 canvas {
-  border: 1px solid white;
-  width: 100%;
-  height: 100%;
+	border: 1px solid white;
+	width: 100%;
+	height: 100%;
 }
 
-.flex-container{
-  display: flex;
+.flex-container {
+	display: flex;
 }
-
 
 .box {
-  width: 80px;
-  height: 80px;
-  /* border: 1px solid #fff; */
-  display: inline-block;
-  /* background-color: attr('data-color'); */
-  position: relative;
-  /* margin: 5px; */
-  font-size: 10px;
-  cursor: pointer;
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 80px;
+	cursor: pointer;
+	font-size: 10px;
 }
+
 .box::before {
-  color: #fff;
-  font-size: 0.8rem;
   content: attr(data-label);
-  position: absolute;
-  width: 150px;
-  top: 5px;
-  left: 5px;
+	position: absolute;
+	color: #fff;
+	font-size: 0.8rem;
+	width: 150px;
+	top: 5px;
+	left: 5px;
 }
 .box::after {
-  color: #fff;
-  font-size: 0.8rem;
   content: attr(data-color);
-  position: absolute;
-  width: 150px;
-  bottom: 5px;
-  left: 5px;
+	position: absolute;
+	color: #fff;
+	font-size: 0.8rem;
+	width: 150px;
+	bottom: 5px;
+	left: 5px;
 }
-
 
 .pixel {
-  width: 100px;
-  height: 100px;
-  border: 1px solid #111;
   position: relative;
-  padding: 20px 5px;
+	width: 100px;
+	height: 100px;
+	border: 1px solid #111;
+	padding: 20px 5px;
 }
+
 .pixel::before {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  content: '(' attr(data-coord) ')';
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	content: "(" attr(data-coord) ")";
 }
+
 .pixel:hover {
-  outline: 2px solid orangered;
+	outline: 2px solid orangered;
 }
+
 .highlight {
-  background-color: gold;
+	background-color: gold;
 }
 
-.canvas-container{
-  width: 350px;
-  height: 350px;
+.canvas-container {
   position: relative;
-}
-.dragger{
-  position: absolute;
-  border: 2px solid black;
-  padding: 1em;
-  z-index: 99999;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  top:0;
+	width: 350px;
+	height: 350px;
 }
 
-.col-container{
-  display: flex;
-  flex-direction: column;
-
+.dragger {
+	position: absolute;
+	border: 2px solid black;
+	padding: 1em;
+	z-index: 99999;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	top: 0;
 }
 
-.all-element{
-  position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    -ms-user-select: none;
-    -khtml-user-select: none;
-    user-select: none;
-    cursor: default;
- 
-    left: 0;
-    cursor: pointer;
-    border: 3px solid white;
+.col-container {
+	display: flex;
+	flex-direction: column;
 }
 
+.all-element {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+  left: 0;
+	cursor: pointer;
+	border: 3px solid white;
+}
 
 /* zeroth element */
-#elem
-{
-    background-color: rgb(227, 227, 227);
-    top:1px;
+#elem {
+	background-color: rgb(227, 227, 227);
+	top: 1px;
 }
 
-#elem:hover{
-  width: 40px;
-  height: 40px;
+#elem:hover {
+	width: 40px;
+	height: 40px;
 }
 
-#pixelColor{
-  background-color: rgb(227, 227, 227);
-  border-radius: 15px 0 0 15px;
+#pixelColor {
+	background-color: rgb(227, 227, 227);
+	border-radius: 15px 0 0 15px;
 }
+
 /* first element */
-
-#elem1
-{
-    background-color: rgb(127, 127, 127);
-    top:50px;
+#elem1 {
+	background-color: rgb(127, 127, 127);
+	top: 50px;
 }
 
-#elem1:hover{
-  width: 40px;
-  height: 40px;
+#elem1:hover {
+	width: 40px;
+	height: 40px;
 }
 
-
-#pixelColor1{
-  background-color: rgb(127, 127, 127);
+#pixelColor1 {
+	background-color: rgb(127, 127, 127);
 }
 
 /*  second element */
-#elem2
-{
-    background-color: rgb(198, 196, 196);
-    top:100px;
+#elem2 {
+	background-color: rgb(198, 196, 196);
+	top: 100px;
 }
 
-#elem2:hover{
-  width: 40px;
-  height: 40px;
+#elem2:hover {
+	width: 40px;
+	height: 40px;
 }
 
-#pixelColor2{
-  background-color: rgb(198, 196, 196);
+#pixelColor2 {
+	background-color: rgb(198, 196, 196);
 }
 
 /* third element */
-#elem3
-{
-    background-color: rgb(51, 51, 51);
-    top:150px;
+#elem3 {
+	background-color: rgb(51, 51, 51);
+	top: 150px;
 }
 
-#elem3:hover{
-  width: 40px;
-  height: 40px;
+#elem3:hover {
+	width: 40px;
+	height: 40px;
 }
 
-
-#pixelColor3{
-  background-color: rgb(52, 52, 52);
+#pixelColor3 {
+	background-color: rgb(52, 52, 52);
 }
 
 /* four element */
-#elem4
-{
-    background-color: rgb(222, 222, 222);
-    top:200px;
+#elem4 {
+	background-color: rgb(222, 222, 222);
+	top: 200px;
 }
 
-#elem4:hover{
-  width: 40px;
-  height: 40px;
+#elem4:hover {
+	width: 40px;
+	height: 40px;
 }
 
-#pixelColor4{
-  background-color: rgb(222, 222, 222);
-  border-radius: 0 15px 15px 0;
+#pixelColor4 {
+	background-color: rgb(222, 222, 222);
+	border-radius: 0 15px 15px 0;
 }
 
-
-.text{
-  font-size: 10px;
+.text {
+	font-size: 10px;
 }
 
 .copied-clipboard {
-  position: absolute;
-  /* bottom: -2.5rem; */
-  font-size: 0.9rem;
-  background-color: rgb(238, 238, 253);
-  border: 1px solid rgb(196, 196, 255);
-  padding: 8px;
-  border-radius: 5px;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
+	position: absolute;
+	font-size: 0.9rem;
+	background-color: rgb(238, 238, 253);
+	border: 1px solid rgb(196, 196, 255);
+	padding: 8px;
+	border-radius: 5px;
+	z-index: 2;
+	top: 50%;
+	left: 50%;
 }
-
-
